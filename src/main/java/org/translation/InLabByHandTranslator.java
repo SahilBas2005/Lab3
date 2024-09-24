@@ -63,6 +63,8 @@ public class InLabByHandTranslator implements Translator {
         }
         else if ("zh".equals(language)) {
             translatedName = "加拿大";
+        } else if("fr".equals(language)) {
+            translatedName = "Canada";
         }
         else if ("ir".equals(language)) {
             translatedName = "Ceanada";
