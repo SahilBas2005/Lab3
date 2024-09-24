@@ -70,6 +70,9 @@ public class InLabByHandTranslator implements Translator {
         else if ("jp".equals(language)) {
             translatedName = "カナダ";
         }
+        else if ("bo".equals(language)) {
+            translatedName = "ཁེ་ན་ཌ།";
+        }
         return translatedName;
     }
 }
