@@ -16,7 +16,6 @@ public class CountryCodeConverter {
     private Map<String, String> codeToName = new HashMap<>();
     private Map<String, String> nameToCode = new HashMap<>();
 
-
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
      * in the resources folder.
@@ -35,13 +34,15 @@ public class CountryCodeConverter {
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
-
-            // TODO Task: use lines to populate the instance variable(s)
             
             for (String line : lines) {
                 String[] parts = line.split("\t");
-                codeToName.put(parts[2], parts[0]);
-                nameToCode.put(parts[0], parts[2]);
+                if (!parts[0].equals("Country")) {
+                    String curName = parts[0];
+                    String curCode = parts[2];
+                    codeToName.put(curCode, curName);
+                    nameToCode.put(curName, curCode);
+                }
             }
         }
         catch (IOException | URISyntaxException ex) {
@@ -56,8 +57,7 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        // TODO Task: update this code to use an instance variable to return the correct value
-        return codeToName.get(code);
+        return codeToName.get(code.toUpperCase());
     }
 
     /**
@@ -66,7 +66,6 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
-        // TODO Task: update this code to use an instance variable to return the correct value
         return nameToCode.get(country);
     }
 
@@ -75,12 +74,7 @@ public class CountryCodeConverter {
      * @return how many countries are included in this code converter.
      */
     public int getNumCountries() {
-        // TODO Task: update this code to use an instance variable to return the correct value
         return nameToCode.size();
     }
 
-
-    public static void main(String[] args) {
-        CountryCodeConverter converter = new CountryCodeConverter();
-    }
 }
