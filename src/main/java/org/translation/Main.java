@@ -82,7 +82,7 @@ public class Main {
     private static String promptForLanguage(Translator translator, String country) {
         LanguageCodeConverter l = new LanguageCodeConverter();
         List<String> languages = translator.getCountryLanguages(country);
-        List<String> sLanguages = new ArrayList<>(languages);
+        List<String> sLanguages = new ArrayList<>();
 
         for (String language : languages) {
             sLanguages.add(l.fromLanguageCode(language));
