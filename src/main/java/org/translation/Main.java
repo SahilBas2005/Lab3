@@ -74,7 +74,7 @@ public class Main {
         System.out.println("select a country from above:");
 
         Scanner s = new Scanner(System.in);
-        return c.fromCountry(String.valueOf(s));
+        return s.nextLine();
 
     }
 
@@ -97,6 +97,6 @@ public class Main {
         System.out.println("select a language from above:");
 
         Scanner s = new Scanner(System.in);
-        return l.fromLanguage(String.valueOf(s));
+        return s.nextLine();
     }
 }
