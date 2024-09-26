@@ -17,7 +17,6 @@ import org.json.JSONObject;
  */
 public class JSONTranslator implements Translator {
 
-    private static final String COUNTRY_CODE_KEY = "alpha3";
     private final JSONArray jsonArray;
 
     /**
@@ -46,13 +45,13 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        List<String> badKeys = Arrays.asList("id", "alpha2", COUNTRY_CODE_KEY);
+        List<String> badKeys = Arrays.asList("id", "alpha2", "alpha3");
         List<String> languageCodes = new ArrayList<String>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject c = jsonArray.getJSONObject(i);
-            if (c.getString(COUNTRY_CODE_KEY).equalsIgnoreCase(country)) {
+            if (c.getString("alpha3").equals(country)) {
                 for (String code : c.keySet()) {
-                    if (!badKeys.contains(code.toLowerCase())) {
+                    if (!badKeys.contains(code)) {
                         languageCodes.add(code);
                     }
                 }
@@ -66,7 +65,7 @@ public class JSONTranslator implements Translator {
         List<String> countryCodes = new ArrayList<String>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject c = jsonArray.getJSONObject(i);
-            countryCodes.add(c.getString(COUNTRY_CODE_KEY));
+            countryCodes.add(c.getString("alpha3"));
         }
         return countryCodes;
     }
@@ -75,7 +74,7 @@ public class JSONTranslator implements Translator {
     public String translate(String country, String language) {
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject c = jsonArray.getJSONObject(i);
-            if (c.getString(COUNTRY_CODE_KEY).equals(country)) {
+            if (c.getString("alpha3").equals(country)) {
                 return c.getString(language);
             }
         }
