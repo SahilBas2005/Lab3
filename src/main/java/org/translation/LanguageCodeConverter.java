@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class LanguageCodeConverter {
 
-    private Map codeToLang = new HashMap();
-    private Map langToCode = new HashMap();
+    private Map<String, String> codeToLang = new HashMap<>();
+    private Map<String, String> langToCode = new HashMap<>();
     private Integer languageCount = 0;
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
@@ -52,8 +52,6 @@ public class LanguageCodeConverter {
 
                 for (String lang : languageArray) {
                     String langEdit = lang.trim();
-                    System.out.println(langEdit);
-                    System.out.println(code);
                     langToCode.put(langEdit, code);
                     codeToLang.put(code, langEdit);
                 }
@@ -71,7 +69,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        return codeToLang.get(code).toString();
+        return codeToLang.get(code);
     }
 
     /**
@@ -80,7 +78,7 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        return langToCode.get(language).toString();
+        return langToCode.get(language);
     }
 
     /**
