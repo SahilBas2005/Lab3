@@ -86,7 +86,6 @@ public class Main {
 
         for (String language : languages) {
             sLanguages.add(l.fromLanguageCode(language));
-            //comment
         }
 
         Collections.sort(sLanguages);
